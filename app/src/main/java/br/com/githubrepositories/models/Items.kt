@@ -1,9 +1,9 @@
-package br.com.githubrepositories
+package br.com.githubrepositories.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ItemsModel (
+data class Items (
    @SerializedName("stargazers_count")
    @Expose
    val startsCount: Long,
@@ -14,5 +14,5 @@ data class ItemsModel (
    @Expose
    val forksCount: Long,
    @SerializedName("owner")
-   @Expose val owner: OwnerModel
+   @Expose val owner: Owner
 )

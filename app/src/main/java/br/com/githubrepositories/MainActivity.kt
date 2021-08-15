@@ -8,6 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.githubrepositories.databinding.ActivityMainBinding
+import br.com.githubrepositories.models.Items
+import br.com.githubrepositories.models.Repositories
+import br.com.githubrepositories.services.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var apiClient = ApiClient()
     private var currentPage = 1
     private var totalAvailablePages : Int? = 1
-    private lateinit var tvShowList: ArrayList<ItemsModel>
+    private lateinit var tvShowList: ArrayList<Items>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!binding.recyclerview.canScrollVertically(1)) {
                     if (totalAvailablePages!= null) {
-                    currentPage += 1
+                    currentPage ++
                     loadPageList()
                     }
                 }
@@ -53,8 +56,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadPageList() {
         toogleLoading()
-        apiClient.callRepositoriesListRequest(currentPage, object : Callback<RepositoriesModel> {
-            override fun onResponse(call: Call<RepositoriesModel>, response: Response<RepositoriesModel>) {
+        apiClient.callRepositoriesListRequest(currentPage, object : Callback<Repositories> {
+            override fun onResponse(call: Call<Repositories>, response: Response<Repositories>) {
                 if (response.isSuccessful) {
                     val repositoryModel = response.body()
                     if (repositoryModel != null) {
@@ -71,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 toogleLoading()
             }
 
-            override fun onFailure(call: Call<RepositoriesModel>, t: Throwable) {
+            override fun onFailure(call: Call<Repositories>, t: Throwable) {
                 t.printStackTrace()
                 Log.e(TAG, "exception", t)
                 toogleLoading()
@@ -79,9 +82,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun getTotalAvailablePages(repositoryModel: RepositoriesModel) : Int? {
+    private fun getTotalAvailablePages(repository: Repositories) : Int? {
         try{
-            return repositoryModel.items.size
+            return repository.items.size
         }catch (ex : Exception){
             return null
         }

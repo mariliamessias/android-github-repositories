@@ -1,5 +1,6 @@
-package br.com.githubrepositories
+package br.com.githubrepositories.services
 
+import br.com.githubrepositories.models.Repositories
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,7 +14,7 @@ class ApiClient {
         .build()
         .create(ApiService::class.java)
 
-    fun callRepositoriesListRequest(page: Int, callback: Callback<RepositoriesModel>) {
+    fun callRepositoriesListRequest(page: Int, callback: Callback<Repositories>) {
         apiService.getRepositoriesList(page).enqueue(callback)
     }
 }

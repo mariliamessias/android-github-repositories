@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.githubrepositories.databinding.ListItemsBinding
+import br.com.githubrepositories.models.Items
 import com.bumptech.glide.Glide
 
 class MainActivityAdapter() : RecyclerView.Adapter<MainActivityAdapter.MainActivityAdapterHolder>() {
 
-    private var repositoriesList = ArrayList<ItemsModel>()
+    private var repositoriesList = ArrayList<Items>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -45,7 +46,7 @@ class MainActivityAdapter() : RecyclerView.Adapter<MainActivityAdapter.MainActiv
         val binding = ListItemsBinding.bind(itemView)
     }
     
-    fun updateList(repositoriesList: ArrayList<ItemsModel>, oldCount: Int, repositoriesListSize: Int) {
+    fun updateList(repositoriesList: ArrayList<Items>, oldCount: Int, repositoriesListSize: Int) {
         this.repositoriesList = repositoriesList
         notifyItemRangeInserted(oldCount, repositoriesListSize)
     }
