@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="app" src="./src/main/res/drawable/capturescreen.jpeg" />
+    <img alt="app" src="app/src/main/res/drawable/capturescreen.jpeg" />
 </h1>
 
 <br>
