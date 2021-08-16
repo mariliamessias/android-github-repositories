@@ -1,4 +1,4 @@
-package br.com.githubrepositories
+package br.com.githubrepositories.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.githubrepositories.R
+import br.com.githubrepositories.adapter.MainActivityAdapter
 import br.com.githubrepositories.databinding.ActivityMainBinding
 import br.com.githubrepositories.models.Items
 import br.com.githubrepositories.models.Repositories
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var apiClient = ApiClient()
     private var currentPage = 1
     private var totalAvailablePages : Int? = 1
-    private lateinit var tvShowList: ArrayList<Items>
+    private lateinit var itemsList: ArrayList<Items>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        tvShowList = ArrayList()
+        itemsList = ArrayList()
         mainActivityAdapter = MainActivityAdapter()
         binding.recyclerview.adapter = mainActivityAdapter
         binding.recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -61,13 +63,13 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val repositoryModel = response.body()
                     if (repositoryModel != null) {
-                        val oldCount = tvShowList.size
+                        val oldCount = itemsList.size
                         totalAvailablePages = getTotalAvailablePages(repositoryModel)
-                        tvShowList.addAll(repositoryModel.items)
-                        mainActivityAdapter.updateList(tvShowList, oldCount, tvShowList.size)
+                        itemsList.addAll(repositoryModel.items)
+                        mainActivityAdapter.updateList(itemsList, oldCount, itemsList.size)
                         Log.e(
                             TAG,
-                            "oldCount $oldCount totalAvailablePages $totalAvailablePages tvShowList ${tvShowList.size}"
+                            "oldCount $oldCount totalAvailablePages $totalAvailablePages tvShowList ${itemsList.size}"
                         )
                     }
                 }

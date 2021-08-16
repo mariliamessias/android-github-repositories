@@ -1,9 +1,10 @@
-package br.com.githubrepositories
+package br.com.githubrepositories.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.githubrepositories.R
 import br.com.githubrepositories.databinding.ListItemsBinding
 import br.com.githubrepositories.models.Items
 import com.bumptech.glide.Glide
@@ -15,14 +16,14 @@ class MainActivityAdapter() : RecyclerView.Adapter<MainActivityAdapter.MainActiv
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MainActivityAdapter.MainActivityAdapterHolder {
+    ): MainActivityAdapterHolder {
         return MainActivityAdapterHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.list_items, parent, false)
         )
     }
 
     override fun onBindViewHolder(
-        holder: MainActivityAdapter.MainActivityAdapterHolder,
+        holder: MainActivityAdapterHolder,
         position: Int
     ) {
         holder.binding.repositoryName.text = "${repositoriesList[position].name}"

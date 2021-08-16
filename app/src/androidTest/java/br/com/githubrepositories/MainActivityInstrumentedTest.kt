@@ -6,12 +6,13 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import br.com.githubrepositories.view.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MainActivityTest {
+class MainActivityInstrumentedTest {
 
     @get: Rule
     val activityRule : ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
@@ -34,13 +35,8 @@ class MainActivityTest {
             .check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
 
-    /**
-     * RecycleView comes into view
-     */
     @Test
-    fun testRecycleViewVisible(){
+    fun testRecycleViewVisible() {
         onView(withId(R.id.recyclerview)).check(matches(isDisplayed()))
-
     }
-
 }
