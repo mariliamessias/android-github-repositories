@@ -1,5 +1,17 @@
 <h1 align="center">
-    <img alt="app" src="app/src/main/res/drawable/capturescreen.jpeg" width="250"/>
+    <img alt="app" src="app/src/main/res/drawable/capture/load.jpeg" width="250"/>
+</h1>
+
+<h1 align="center">
+    <img alt="app" src="app/src/main/res/drawable/capture/new.jpeg" width="250"/>
+</h1>
+
+<h1 align="center">
+    <img alt="app" src="app/src/main/res/drawable/capture/menu.jpeg" width="250"/>
+</h1>
+
+<h1 align="center">
+    <img alt="app" src="app/src/main/res/drawable/capture/delete.jpeg" width="250"/>
 </h1>
 
 <br>
@@ -13,5 +25,5 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Objetivo de listar os repositórios do github e exibir algumas informações relacionadas a eles.
+Objetivo de listar os convidados de algum evento.
 
